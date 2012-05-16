@@ -6,6 +6,10 @@ adding a little flexibility.
 
 Maturity &mdash; `pre-alpha`
 
+Defining Jobs
+-------------
+
+The Jenkins jobs are generated using a list of meta-data declared in the `'jobs'` attribute.  
 
 Development
 -----------
