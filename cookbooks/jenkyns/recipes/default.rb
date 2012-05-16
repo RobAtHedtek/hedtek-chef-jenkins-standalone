@@ -33,8 +33,6 @@ jenkins_version = "#{node['jenkins']['major']}_#{node['jenkins']['minor']}"
 jenkins_source = "jenkins-#{jenkins_version}.war"
 jenkins_dest = File.join(home, "jenkins.war")
 
-raise "#{jenkins_source} not found. Please download Jenkin distribution and plugins." unless File.exists? jenkins_source
-
 cookbook_file jenkins_dest do
   owner user
   source "#{jenkins_source}"
