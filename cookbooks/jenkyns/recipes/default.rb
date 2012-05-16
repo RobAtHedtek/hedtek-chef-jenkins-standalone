@@ -33,13 +33,11 @@ jenkins_version = "1_457"
 jenkins_source = "jenkins-#{jenkins_version}.war"
 jenkins_dest = File.join(home, "jenkins.war")
 
-begin
-  cookbook_file jenkins_dest do
-   owner user
-   source "#{jenkins_source}"
-  end
-rescue Chef::Exceptions::FileNotFound 
-  raise NotFound "Please download Jenkin distribution and plugins."
+raise "#{jenkins_dest} not found. Please download Jenkin distribution and plugins." unless File.exists? jenkins_dest
+
+cookbook_file jenkins_dest do
+  owner user
+  source "#{jenkins_source}"
 end
   
 # Outline directory structure
