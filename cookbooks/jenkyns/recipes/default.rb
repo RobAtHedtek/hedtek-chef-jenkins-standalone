@@ -184,7 +184,7 @@ plugins = [plugin_definitions[:git], plugin_definitions[:ruby]]
   template File.join(job_dir, "config.xml") do
     owner user
     source "task.config.xml.erb"
-    variables()
+    variables( :url => 'https://github.com/hedtek/dspace-rest.git')
   end
 
 
