@@ -168,9 +168,9 @@ plugins = [plugin_definitions[:git], plugin_definitions[:ruby]]
 # are versions are good idea?
 # may be better to include within name
 [
-{:name => "dspace-rest", :version => 0.1, :plugins => [:git]},
-{:name => "dspace-rest", :version => 0.2, :plugins => [:git]},
-{:name => "dspace-rest", :version => 0.3, :plugins => [:git]}].each do |job|
+{:name => "dspace-rest", :version => 0.1, :url => 'https://github.com/hedtek/dspace-rest.git', :plugins => [:git]},
+{:name => "dspace-rest", :version => 0.2, :url => 'https://github.com/hedtek/dspace-rest.git', :plugins => [:git]},
+{:name => "dspace-rest", :version => 0.3, :url => 'https://github.com/hedtek/dspace-rest.git', :plugins => [:git]}].each do |job|
   #TODO: remember uniqueness check for job names
   job_name = "#{job[:name]}-#{job[:version]}"
   job_dir = File.join(jobs_install_dir, job_name)
@@ -184,7 +184,7 @@ plugins = [plugin_definitions[:git], plugin_definitions[:ruby]]
   template File.join(job_dir, "config.xml") do
     owner user
     source "task.config.xml.erb"
-    variables( :url => 'https://github.com/hedtek/dspace-rest.git')
+    variables( :url => job[:url])
   end
 
 
