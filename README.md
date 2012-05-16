@@ -9,7 +9,15 @@ Maturity &mdash; `pre-alpha`
 Defining Jobs
 -------------
 
-The Jenkins jobs are generated using a list of meta-data declared in the `'jobs'` attribute.  
+The Jenkins jobs are generated using a list of meta-data declared in the `'jobs'` attribute. 
+
+The version of Jenkins installed is control through the `minor` and `major` attribute of `jenkins`. 
+For example, to default the jenkins version to 1.464 use
+
+   default['jenkins'] = {
+      :major => 1,
+      :minor => 464
+   } 
 
 Development
 -----------
