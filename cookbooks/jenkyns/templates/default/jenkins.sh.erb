@@ -15,5 +15,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #%>
-
+echo 
+echo 
+echo 
+echo "Starting Jenkins on <%= @http_port %>"
+echo 
+echo 
+echo 
 java -DJENKINS_HOME=<%= @home %> -jar <%= @war %> --httpPort=<%= @http_port %> --ajp13Port=<%= @ajp_port%>
