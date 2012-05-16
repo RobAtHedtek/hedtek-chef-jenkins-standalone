@@ -14,7 +14,7 @@ Development
 
 To run in development mode:
 
-  chef-solo --config config/chef-solo-config.rb --json-attributes config/from-jenkyns-run-default.json
+    chef-solo --config config/chef-solo-config.rb --json-attributes config/from-jenkyns-run-default.json
   
 which will install into the `tmp` sub-directory.  
 
