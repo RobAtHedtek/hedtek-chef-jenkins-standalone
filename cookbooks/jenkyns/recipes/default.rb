@@ -137,78 +137,6 @@ plugin_definitions = {
 :git => {:name => 'git', :version => '1.1.16'}
 }
 
-task_config =<<-EOF
-<?xml version='1.0' encoding='UTF-8'?>
-<maven2-moduleset>
-  <actions/>
-  <description></description>
-  <keepDependencies>false</keepDependencies>
-  <properties/>
-  <scm class="hudson.plugins.git.GitSCM">
-    <configVersion>2</configVersion>
-    <userRemoteConfigs>
-      <hudson.plugins.git.UserRemoteConfig>
-        <name></name>
-        <refspec></refspec>
-        <url>https://github.com/hedtek/dspace-rest.git</url>
-      </hudson.plugins.git.UserRemoteConfig>
-    </userRemoteConfigs>
-    <branches>
-      <hudson.plugins.git.BranchSpec>
-        <name>**</name>
-      </hudson.plugins.git.BranchSpec>
-    </branches>
-    <disableSubmodules>false</disableSubmodules>
-    <recursiveSubmodules>false</recursiveSubmodules>
-    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
-    <authorOrCommitter>false</authorOrCommitter>
-    <clean>false</clean>
-    <wipeOutWorkspace>false</wipeOutWorkspace>
-    <pruneBranches>false</pruneBranches>
-    <remotePoll>false</remotePoll>
-    <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
-    <gitTool>Default</gitTool>
-    <submoduleCfg class="list"/>
-    <relativeTargetDir></relativeTargetDir>
-    <reference></reference>
-    <excludedRegions></excludedRegions>
-    <excludedUsers></excludedUsers>
-    <gitConfigName></gitConfigName>
-    <gitConfigEmail></gitConfigEmail>
-    <skipTag>false</skipTag>
-    <includedRegions></includedRegions>
-    <scmName></scmName>
-  </scm>
-  <canRoam>true</canRoam>
-  <disabled>false</disabled>
-  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
-  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers class="vector"/>
-  <concurrentBuild>false</concurrentBuild>
-  <aggregatorStyleBuild>true</aggregatorStyleBuild>
-  <incrementalBuild>false</incrementalBuild>
-  <perModuleEmail>true</perModuleEmail>
-  <ignoreUpstremChanges>false</ignoreUpstremChanges>
-  <archivingDisabled>false</archivingDisabled>
-  <resolveDependencies>false</resolveDependencies>
-  <processPlugins>false</processPlugins>
-  <mavenValidationLevel>-1</mavenValidationLevel>
-  <runHeadless>false</runHeadless>
-  <settingConfigId></settingConfigId>
-  <globalSettingConfigId></globalSettingConfigId>
-  <reporters/>
-  <publishers/>
-  <buildWrappers/>
-  <prebuilders/>
-  <postbuilders/>
-  <runPostStepsIfResult>
-    <name>FAILURE</name>
-    <ordinal>2</ordinal>
-    <color>RED</color>
-  </runPostStepsIfResult>
-</maven2-moduleset>
-EOF
-
 #
 # Jenkins runs every job found in this directory
 jenkins_jobs_dir = File.join(jenkins_home, "jobs")
@@ -240,9 +168,9 @@ plugins = [plugin_definitions[:git], plugin_definitions[:ruby]]
 # are versions are good idea?
 # may be better to include within name
 [
-{:name => "dspace-rest", :version => 0.1, :config => task_config, :plugins => [:git]},
-{:name => "dspace-rest", :version => 0.2, :config => task_config, :plugins => [:git]},
-{:name => "dspace-rest", :version => 0.3, :config => task_config, :plugins => [:git]}].each do |job|
+{:name => "dspace-rest", :version => 0.1, :plugins => [:git]},
+{:name => "dspace-rest", :version => 0.2, :plugins => [:git]},
+{:name => "dspace-rest", :version => 0.3, :plugins => [:git]}].each do |job|
   #TODO: remember uniqueness check for job names
   job_name = "#{job[:name]}-#{job[:version]}"
   job_dir = File.join(jobs_install_dir, job_name)
@@ -252,11 +180,14 @@ plugins = [plugin_definitions[:git], plugin_definitions[:ruby]]
     owner user
     action :create
   end   
-  file File.join(job_dir, "config.xml") do
+  
+  template File.join(job_dir, "config.xml") do
     owner user
-    content ERB.new(job[:config]).result(binding)
-    action :create
+    source "task.config.xml.erb"
+    variables()
   end
+
+
 #
 # The idea is to preserve history but copy over configuration.
 # The jenkins jobs directory will be destroyed and then recreated.
