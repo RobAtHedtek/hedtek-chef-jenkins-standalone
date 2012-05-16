@@ -190,8 +190,9 @@ node['jobs'].each do |job|
 # The idea is to preserve history but copy over configuration.
 # The jenkins jobs directory will be destroyed and then recreated.
 # Links are then added to the jobs required.
-  log("Switching #{job_name} on") { level :info }
-  link File.join(jenkins_jobs_dir, job_name) do
+  target = File.join(jenkins_jobs_dir, job_name)
+  log("Switching #{job_name} on, linked #{job_name} to #{target}") { level :info }
+  link target do
     to job_dir
     link_type :symbolic
     owner user
