@@ -32,11 +32,16 @@ require 'erb'
 jenkins_version = "1_457"
 jenkins_source = "jenkins-#{jenkins_version}.war"
 jenkins_dest = File.join(home, "jenkins.war")
-cookbook_file jenkins_dest do
- owner user
- source "#{jenkins_source}"
-end
 
+begin
+  cookbook_file jenkins_dest do
+   owner user
+   source "#{jenkins_source}"
+  end
+rescue Chef::Exceptions::FileNotFound 
+  raise NotFound "Please download Jenkin distribution and plugins."
+end
+  
 # Outline directory structure
 jenkins_plugins = File.join(home, "plugins")
 directory jenkins_plugins do
