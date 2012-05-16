@@ -29,7 +29,7 @@ require 'fileutils'
  jenkins_version = nil
  hudson_version = nil
  imp_version = nil
- `unzip -c #{plugin_file_name} META-INF/MANIFEST.MF`.each do |line| 
+ `unzip -c #{plugin_file_name} META-INF/MANIFEST.MF`.each_line do |line| 
    plugin_version = line.split[1] if line.start_with?("Plugin-Version:")
    jenkins_version = line.split[1] if line.start_with?("Jenkins-Version:")
    hudson_version = line.split[1] if line.start_with?("Hudson-Version:")
