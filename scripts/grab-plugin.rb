@@ -38,7 +38,9 @@ require 'fileutils'
   version = imp_version ? imp_version : plugin_version
   puts "Plugin #{name}@#{plugin_version}(#{imp_version}) for Jenkins #{jenkins_version} | #{hudson_version}"
   puts "Using version #{version}"
-  FileUtils.mv(plugin_file_name, "cookbooks/jenkyns/files/default/plugins/#{name}-#{version}.hpi")
+  plugin_dir = "cookbooks/jenkyns/files/default/plugins"
+  FileUtils.mkdir(plugin_dir) unless File.exists?(plugin_dir)
+  FileUtils.mv(plugin_file_name, "#{plugin_dir}/#{name}-#{version}.hpi")
 end
 
 
