@@ -29,7 +29,7 @@ require 'erb'
 #
 # Distributes Jenkins, ready to run as a war.
 #
-jenkins_version = "1_457"
+jenkins_version = "#{node['jenkins']['major']}_#{node['jenkins']['minor']}"
 jenkins_source = "jenkins-#{jenkins_version}.war"
 jenkins_dest = File.join(home, "jenkins.war")
 

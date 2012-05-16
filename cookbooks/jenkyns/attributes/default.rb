@@ -24,3 +24,7 @@ default['jobs'] = [
     :plugins => [:git]
 }
 ]
+default['jenkins'] = {
+    :major => 1,
+    :minor => 464
+}
