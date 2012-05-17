@@ -115,3 +115,5 @@ default['plugin_definitions'] = {
 #  name git and version 1.1.16
 :git => {:name => 'git', :version => '1.1.16'}
 }
+default['port']['http'] = 9990
+default['port']['ajp'] = node['port']['http'] + 1 

@@ -53,8 +53,8 @@ template File.join(home, "jenkins.sh") do
   variables(
    :war => jenkins_dest,
    :home => jenkins_home,
-   :http_port => 9090,
-   :ajp_port => 9091
+   :http_port => node['port']['http'],
+   :ajp_port => node['port']['ajp']
   )
 end
 
