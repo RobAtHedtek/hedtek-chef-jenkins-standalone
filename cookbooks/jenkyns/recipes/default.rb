@@ -12,11 +12,11 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# 
+#
+user = node['jenkins-user']
+ 
 # BEGIN Development only 
-require 'etc'
 home = File.expand_path(File.join(File.dirname(__FILE__), '../../..', "tmp"))
-user = Etc.getlogin
 log("Welcome to Jenkyns. Working in #{home} as #{user}") { level :info }
 directory home do
   owner user
