@@ -59,6 +59,19 @@
        <command><%= @shell %></command>
      </hudson.tasks.Shell>
    </builders>
-  <publishers/>
+  <publishers>
+    <hudson.plugins.rubyMetrics.railsStats.RailsStatsPublisher>
+      <rake>
+         <rakeInstallation>(Default)</rakeInstallation>
+         <rakeWorkingDir></rakeWorkingDir>
+         <tasks>stats</tasks>
+         <silent>true</silent>
+       </rake>
+       <rakeInstallation>(Default)</rakeInstallation>
+       <rakeWorkingDir></rakeWorkingDir>
+       <task>stats</task>
+     </hudson.plugins.rubyMetrics.railsStats.RailsStatsPublisher>
+     <hudson.plugins.statusmonitor.MonitorPublisher/>  
+  </publishers>
   <buildWrappers/>
 </project>
