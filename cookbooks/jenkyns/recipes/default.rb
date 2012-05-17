@@ -22,8 +22,6 @@ directory home do
   action :create
 end
 
-require 'erb'
-
 #
 # Distributes Jenkins, ready to run as a war.
 #
