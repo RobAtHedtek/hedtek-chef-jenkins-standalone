@@ -110,10 +110,14 @@ node['jobs'].each do |job|
     action :create
   end   
   
+  source = "#{job['type'] ?  job['type'] : "maven"}.config.xml.erb" 
+  
   template File.join(job_dir, "config.xml") do
     owner user
-    source "task.config.xml.erb"
-    variables( :url => job[:url])
+    source source
+    variables( 
+      :url => job[:url],
+      :project => job[:project])
   end
 
 
