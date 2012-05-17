@@ -96,7 +96,7 @@ directory jobs_install_dir do
 end
 
 
-plugins = [node['plugin_definitions'][:git], node['plugin_definitions'][:ruby]]
+plugins = node['plugins']
 # are versions are good idea?
 # may be better to include within name
 node['jobs'].each do |job|
