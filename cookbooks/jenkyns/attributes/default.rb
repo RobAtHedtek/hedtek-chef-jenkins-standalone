@@ -16,6 +16,7 @@
 # BEGIN Development only 
 require 'etc'
 node['jenkins-user'] = Etc.getlogin
+node['jenkins-home'] = File.expand_path(File.join(File.dirname(__FILE__), '../../..', "tmp"))
 
 # END Development only
 

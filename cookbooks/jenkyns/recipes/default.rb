@@ -14,15 +14,13 @@
 # limitations under the License.
 #
 user = node['jenkins-user']
- 
-# BEGIN Development only 
-home = File.expand_path(File.join(File.dirname(__FILE__), '../../..', "tmp"))
+home = node['jenkins-home']
+   
 log("Welcome to Jenkyns. Working in #{home} as #{user}") { level :info }
 directory home do
   owner user
   action :create
 end
-# END Development only
 
 require 'erb'
 
