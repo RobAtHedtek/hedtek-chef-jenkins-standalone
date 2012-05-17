@@ -57,8 +57,12 @@ default['plugin_definitions'] = {
 # ircbot-2.18.hpi has 
 #  name ircbot and version 2.18
 :ircbot => {:name => 'ircbot', :version => '2.18'},
+# github-api-1.23.hpi has 
+#  name github-api and version 1.23
+:github_api => {:name => 'github-api', :version => '1.23'},
 # github-1.2.hpi has 
 #  name github and version 1.2
+# requires github-api
 :github => {:name => 'github', :version => '1.2'},
 # analysis-core-1.38.hpi has 
 #  name analysis-core and version 1.38
@@ -113,7 +117,7 @@ default['plugin_definitions'] = {
 :violations => {:name => 'violations', :version => '0.7.10'},
 # git-1.1.16.hpi has 
 #  name git and version 1.1.16
-:git => {:name => 'git', :version => '1.1.16'}
+:git => {:name => 'git', :version => '1.1.18'}
 }
 default['port']['http'] = 9990
 default['port']['ajp'] = node['port']['http'] + 1

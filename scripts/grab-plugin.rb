@@ -22,8 +22,8 @@ require 'fileutils'
 #end
 
 
-%w(ruby rubyMetrics rake dashboard-view git github ircbot email-ext instant-messaging analysis-core ci-game statusmonitor violations xunit release radiatorviewplugin xfpanel build-pipeline-plugin emma htmlpublisher all-changes).each do |name|
- plugin_file_name = "#{name}.hpi"
+%w(ruby rubyMetrics rake dashboard-view git github ircbot email-ext instant-messaging analysis-core ci-game statusmonitor violations xunit release radiatorviewplugin xfpanel build-pipeline-plugin emma htmlpublisher all-changes github-api brakeman sloccount).each do |name|
+plugin_file_name = "#{name}.hpi"
  `wget --no-check-certificate "http://updates.jenkins-ci.org/latest/#{plugin_file_name}"` unless File.exists? "#{plugin_file_name}"
  plugin_version = nil
  jenkins_version = nil
