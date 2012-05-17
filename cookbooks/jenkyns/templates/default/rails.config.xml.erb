@@ -48,9 +48,17 @@
   <disabled>false</disabled>
   <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
   <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
-  <triggers class="vector"/>
+  <triggers class="vector">
+     <hudson.triggers.SCMTrigger>
+       <spec>*/5 * * * *</spec>
+     </hudson.triggers.SCMTrigger>
+   </triggers>
   <concurrentBuild>false</concurrentBuild>
-  <builders/>
+  <builders>
+     <hudson.tasks.Shell>
+       <command><%= @shell %></command>
+     </hudson.tasks.Shell>
+   </builders>
   <publishers/>
   <buildWrappers/>
 </project>

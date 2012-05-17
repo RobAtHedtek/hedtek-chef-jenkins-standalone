@@ -117,7 +117,8 @@ node['jobs'].each do |job|
     source source
     variables( 
       :url => job[:url],
-      :project => job[:project])
+      :project => job[:project],
+      :shell => job[:shell])
   end
 
 
